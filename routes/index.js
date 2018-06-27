@@ -9,9 +9,10 @@ const requireAuth = passport.authenticate('jwt', { session: false} );       // j
 const requireSignin = passport.authenticate('local', { session: false } );  // localStrategyu
 // passport - END
 
-// authentication
+// authentication - BEGIN
 router.post('/signup', authController.signup);
 router.post('/signin', requireSignin, authController.signin);
+// authentication - END
 
 // // events
 // router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
