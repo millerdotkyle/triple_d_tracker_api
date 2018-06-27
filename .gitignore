@@ -36,7 +36,7 @@ hold/
 # Application Options
 #########################
 .env
-config.js
+# config.js
 
 
 # Other - Bower Directories #
