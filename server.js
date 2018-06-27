@@ -6,6 +6,7 @@ const app = express();
 const jsonParser = require('body-parser').json({ type: 'application/json' });
 // const path = require('path');
 const morgan = require('morgan');
+const { CLIENT_ORIGIN } = require('./config');
 
 // db connection vars.
 const mongoose = require('mongoose');
@@ -18,23 +19,15 @@ const routesApi = require('./routes/index');
 // middlewares
 app.use(jsonParser);
 app.use(morgan('common'));
-app.use('/api', routesApi);
-
-// middleware - cors setup
-const { CLIENT_ORIGIN } = require('./config');
-console.log('CLIENT_ORIGIN = ', CLIENT_ORIGIN);
+// middleware - cors setup - BEGIN
 const cors = require('cors');
-// app.use(cors());
 const corsOptions = {
   origin: CLIENT_ORIGIN,
 };
 app.use(cors(corsOptions));
+// middleware - cors setup - END
+app.use('/api', routesApi);
 
-
-// test route to see if server is workig. - currently server is not working properly.
-app.get('/test', function(req, res) {
-  console.log('test route');}
-);
 
 // // Start server without testing code in place - BEGIN
 // mongoose.connect(DATABASE_URL);
