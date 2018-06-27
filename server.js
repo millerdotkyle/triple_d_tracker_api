@@ -4,7 +4,6 @@ const config = require('./config'); // used by code not doing testing. See LOC 2
 const express = require('express');
 const app = express();
 const jsonParser = require('body-parser').json({ type: 'application/json' });
-const cors = require('cors');
 // const path = require('path');
 const morgan = require('morgan');
 
@@ -12,7 +11,6 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const { DATABASE_URL, PORT } = require('./config');
-console.log('DATABASE_URL = ', DATABASE_URL);
 
 // routes
 const routesApi = require('./routes/index');
@@ -20,10 +18,21 @@ const routesApi = require('./routes/index');
 // middlewares
 app.use(jsonParser);
 app.use(morgan('common'));
-app.use(cors);
 app.use('/api', routesApi);
 
-app.get('/test', function() {
+// middleware - cors setup
+const { CLIENT_ORIGIN } = require('./config');
+console.log('CLIENT_ORIGIN = ', CLIENT_ORIGIN);
+const cors = require('cors');
+// app.use(cors());
+const corsOptions = {
+  origin: CLIENT_ORIGIN,
+};
+app.use(cors(corsOptions));
+
+
+// test route to see if server is workig. - currently server is not working properly.
+app.get('/test', function(req, res) {
   console.log('test route');}
 );
 
@@ -63,8 +72,9 @@ function runServer(databaseUrl, port = PORT) {
         return reject(err);
       }
       server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
         console.log('App is using runServer / closeServerr code.');
+        console.log(`Your app is listening on port ${port}`);
+        console.log('App databaseUrl = ', databaseUrl);
         resolve();
       })
       .on('error', err => {
