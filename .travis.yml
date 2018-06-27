@@ -1,0 +1,11 @@
+language: node_js
+node_js: node
+services:
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: gyy2UjX+qqoLvP4qPshTfg2Np74I6PGHpzbM9TrXl9D4RG6Qs+nKMvJBIEk/JbvztjvnLgG2kZe5tiAOOspN+cUxr4370b27H45A56Nou1bkGEO9beI3Bjt7218iVW+K5HbGpoJZPbdstUwJ/DtcZqbRBRtazzQWxRi78WFfDSXfbJEPO9m3VOgQTQvT2u58IZtU3QUWy/1PAkx/U5ziEZxnFPQY/XUF3K3FbqRMNE6fjVBK+OoL5QuG73NC1Xj4IihHdjsGQ773/RCC1dVLaSYr/TVEs1/aD2AW7MXBsz6gde2CybQvqYcXNIvah0uMi30q33Mg7a9ljWiHbod0tIa02pNBv9Wp/5XKeDEt/xJPYBVpT4liaHTgkVX9dkRV1Xje9OoQSyhs/oGb6Rt1aRCF8jeaF7hcvQ/Zyv96UfRVQAUiU5R3WydY5epU+krEWbYJPVmTGlUNRUjNxKzaouhPQIAjBXTH22DZLqwJ7P1WccMnVMWCSIAwcfVZB5z4tLLnd2qJNRz+JwOGbzrRBoF39NkaYTv0c9UCHrq6lSqerJKegfjccmh+LkQ+Cv7pwfjS+G7HA6c/ch2sb54cyiwWhyTOir1oHsPiw6bj2Z8zGcX0Fgoz+Ne7478sMFnPhYb0rxvjtepk0LTDysAsHkKmauLNu0QLbY2CFarEe2Y=
+  app: mighty-sands-78016
+  on:
+    repo: pmkgithub/tripple_d_tracker_api
