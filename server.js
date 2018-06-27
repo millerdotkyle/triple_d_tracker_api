@@ -12,6 +12,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const { DATABASE_URL, PORT } = require('./config');
+console.log('DATABASE_URL = ', DATABASE_URL);
 
 // routes
 const routesApi = require('./routes/index');
@@ -22,9 +23,23 @@ app.use(morgan('common'));
 app.use(cors);
 app.use('/api', routesApi);
 
+app.get('/test', function() {
+  console.log('test route');}
+);
+
 // // Start server without testing code in place - BEGIN
-// app.listen(config.PORT, () => {
-//   console.log('App is running on PORT', config.PORT);
+// mongoose.connect(DATABASE_URL);
+//
+// // // using config.PORT
+// // app.listen(config.PORT, () => {
+// //   console.log('App is running on PORT', config.PORT);
+// //   console.log('App is not using "testing code" runServer/closeServer syntax in place.');
+// // });
+//
+// // using PORT
+// app.listen(PORT, () => {
+//   console.log('App is running on PORT', PORT);
+//   console.log('App is not using "testing code" runServer/closeServer syntax in place.');
 // });
 //
 // module.exports = app;
@@ -49,6 +64,7 @@ function runServer(databaseUrl, port = PORT) {
       }
       server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
+        console.log('App is using runServer / closeServerr code.');
         resolve();
       })
       .on('error', err => {
