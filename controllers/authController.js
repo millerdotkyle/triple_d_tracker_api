@@ -1,3 +1,5 @@
+'use strict';
+
 const config = require('../config');
 const mongoose = require('mongoose');
 const {User} = require('../models/model_user');
@@ -18,7 +20,7 @@ const tokenForUser = (user) => {
 // ************************************************************************* //
 exports.signup = (req, res) => {
 
-  console.log('req.body = ', req.body);
+  console.log('authController signup req.body = ', req.body);
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -91,7 +93,7 @@ exports.signup = (req, res) => {
         return Promise.reject({
           code: 422,
           reason: 'ValidationError',
-          message: 'email already taken',
+          message: 'Email already taken',
           location: 'email'
         });
       }
@@ -135,6 +137,8 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
+
+  console.log('authController signin req.body = ', req.body);
 
   const userId = req.user._id;
 

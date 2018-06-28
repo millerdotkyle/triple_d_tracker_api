@@ -1,6 +1,8 @@
 'use strict';
 const router = require('express').Router();
 const authController = require('../controllers/authController');
+const ctrlLocations = require('../controllers/locationsController');
+const ctrlDetail = require('../controllers/locationDetailController');
 
 // passport - BEGIN
 const passportService = require('../services/passport');
@@ -13,6 +15,14 @@ const requireSignin = passport.authenticate('local', { session: false } );  // l
 router.post('/signup', authController.signup);
 router.post('/signin', requireSignin, authController.signin);
 // authentication - END
+
+// locations
+router.get('/locations', requireAuth, ctrlLocations.getAllLocations);
+router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
+router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
+
+// detail
+router.get('/location/:locationId', requireAuth, ctrlDetail.getLocationDetail);
 
 // // events
 // router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
