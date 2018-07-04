@@ -19,7 +19,7 @@ router.post('/signin', requireSignin, authController.signin);
 // locations
 // router.get('/locations', ctrlLocations.getAllLocations); // w/o auth
 router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
-// router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
+router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
 // router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
 
 // detail
