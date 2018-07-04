@@ -95,6 +95,7 @@ const localStrategy = new LocalStrategy(localOptions, (email, password, done) =>
       return done(null, user);
     })
     .catch(err => {
+      // console.log('passport.js err = ', err);
       if (err.reason === 'LoginError') {
         return done(null, false, err);
       }

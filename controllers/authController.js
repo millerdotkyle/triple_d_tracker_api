@@ -18,9 +18,9 @@ const tokenForUser = (user) => {
 // ************************************************************************* //
 // signup - BEGIN
 // ************************************************************************* //
+// NOTE: exports.signup syntax.  Could also use module.exports = { signup(req, res) => {}, } syntax.
 exports.signup = (req, res) => {
 
-  console.log('authController signup req.body = ', req.body);
   // check for required fields - BEGIN
   const requiredFields = ['email', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -97,7 +97,6 @@ exports.signup = (req, res) => {
           location: 'email'
         });
       }
-
       // If there is no existing user, hash the password.
       return User.hashPassword(password);
     })
@@ -137,8 +136,6 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
-
-  console.log('authController signin req.body = ', req.body);
 
   const userId = req.user._id;
 
