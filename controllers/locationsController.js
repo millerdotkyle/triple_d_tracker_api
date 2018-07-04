@@ -1,19 +1,39 @@
 'use strict';
 const config = require('../config');
 const mongoose = require('mongoose');
+const {Location} = require('../models/model_locations');
 
-mongoose.connect(config.DATABASE_URL);
+// TODO - Question for Ray.  mongoose.connect() is in server.js alreay. Do I need mongoose.connect() here too?
+// mongoose.connect(config.DATABASE_URL);
 
-exports.getAllLocations = (req, res) => {
-  console.log('locationController getAllLocations req.body = ', req.body);
-};
+module.exports = {
+  // NOTE: alternate module.export syntax than authController.js exports.signup syntax.
+  getAllLocations(req, res, next) {
 
-exports.getLocationsByState = (req, res) => {
-  const state = req.params;
-  console.log('locationController getLocationsByState req.body = ', req.body);
-  console.log('locationController getLocationsByState req.params = ', req.params);
-};
+    Location
+      .find()
+      .then((locations) => { res.json(locations).status(200); })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error', err: err });
+      });
 
-exports.getLocationsNearMe = (req, res) => {
-  console.log('locationController getLocationsNearMe req.body = ', req.body);
+  },
+
+  getLocationsByState(req, res, next) {
+    let { state } = req.params;
+    state = state.toUpperCase();
+
+    Location
+      .find({state: state})
+      .then((locations) => { res.json(locations).status(200); })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error', err: err });
+      });
+  },
+
+  getLocationsNearme(req, res, next) {
+    console.log('locationController getLocationsNearMe req.body = ', req.body);
+  }
 };

@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const authController = require('../controllers/authController');
 const ctrlLocations = require('../controllers/locationsController');
-const ctrlDetail = require('../controllers/locationDetailController');
+// const ctrlDetail = require('../controllers/locationDetailController');
 
 // passport - BEGIN
 const passportService = require('../services/passport');
@@ -17,12 +17,13 @@ router.post('/signin', requireSignin, authController.signin);
 // authentication - END
 
 // locations
-router.get('/locations', requireAuth, ctrlLocations.getAllLocations);
+// router.get('/locations', ctrlLocations.getAllLocations); // w/o auth
+router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
 router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
-router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
+// router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
 
 // detail
-router.get('/location/:locationId', requireAuth, ctrlDetail.getLocationDetail);
+// router.get('/location/:locationId', requireAuth, ctrlDetail.getLocationDetail);
 
 // // events
 // router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
