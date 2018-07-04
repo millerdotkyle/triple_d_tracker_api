@@ -3,7 +3,8 @@ const config = require('../config');
 const mongoose = require('mongoose');
 const {Location} = require('../models/model_locations');
 
-mongoose.connect(config.DATABASE_URL);
+// TODO - Question for Ray.  mongoose.connect() is in server.js alreay. Do I need mongoose.connect() here too?
+// mongoose.connect(config.DATABASE_URL);
 
 module.exports = {
   // NOTE: alternate module.export syntax than authController.js exports.signup syntax.
