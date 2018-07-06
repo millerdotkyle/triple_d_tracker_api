@@ -12,6 +12,7 @@ module.exports = {
 
     Location
       .find()
+      .sort({'state': 1})
       .then((locations) => { res.json(locations).status(200); })
       .catch(err => {
         console.error(err);
