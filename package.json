@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-//    "test": "mocha --exit",
     "test": "echo 'test script called'",
     "start": "node server.js",
     "dev": "nodemon server.js"
