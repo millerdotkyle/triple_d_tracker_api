@@ -10,7 +10,8 @@ mongoose.Promise = global.Promise;
 // Define model
 const UserSchema = new Schema({
   email: {type: String, unique: true, lowercase: true},
-  password: {type: String}
+  password: {type: String},
+  visitedLocations: [],
 });
 
 UserSchema.methods.serialize = function() {

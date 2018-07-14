@@ -17,7 +17,8 @@ const LocationSchema = new Schema({
   coords: {
     lat: {type: Number},
     lon: {type: Number}
-  }
+  },
+  ratings: []
 });
 
 const Location = mongoose.model('location', LocationSchema);
