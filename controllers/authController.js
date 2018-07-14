@@ -137,14 +137,16 @@ exports.signup = (req, res) => {
 // ************************************************************************* //
 exports.signin = (req, res) => {
 
+  console.log('req in authController.js signin = ', req);
   const userId = req.user._id;
+  const visitedLocations = req.user.visitedLocations;
 
   // At signin, User has already had their email and password auth'd.
   //
   // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();
   //
-  // Now, we just need to send them a JWT token.
-  res.json({ token: tokenForUser(req.user), userId });
+  // Send JWT token, userId and visitedLocations array to Client.
+  res.json({ token: tokenForUser(req.user), userId, visitedLocations });
 
 
 };
