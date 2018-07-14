@@ -13,6 +13,7 @@ const LocationSchema = new Schema({
   about: {type: String},
   cuisine: [String],
   outOfBusiness: {type: Boolean},
+  visited: [],
   image: {type: String},
   coords: {
     lat: {type: Number},
