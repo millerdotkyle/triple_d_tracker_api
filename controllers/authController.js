@@ -108,8 +108,6 @@ exports.signup = (req, res) => {
       });
     })
     .then((user) => {
-      // TODO - add review - send back userId on signup
-      console.log('authController signup user = ', user);
       // // Grider workflow: create a jwt here and send it back in the response.
       return res.status(201).json({
         token: tokenForUser(user),
@@ -139,11 +137,9 @@ exports.signup = (req, res) => {
 // signin - BEGIN
 // ************************************************************************* //
 exports.signin = (req, res) => {
-
-  console.log('req in authController.js signin = ', req);
   const userId = req.user._id;
   const visitedLocations = req.user.visitedLocations;
-  // TODO - add reviews.
+  // TODO - add reviews - send reviews to Client on signup.
   const reviews = req.user.reviews;
 
   // At signin, User has already had their email and password auth'd.
