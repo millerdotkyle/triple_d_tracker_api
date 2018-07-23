@@ -108,9 +108,12 @@ exports.signup = (req, res) => {
       });
     })
     .then((user) => {
+      // TODO - add review - send back userId on signup
+      console.log('authController signup user = ', user);
       // // Grider workflow: create a jwt here and send it back in the response.
       return res.status(201).json({
         token: tokenForUser(user),
+        userId: user._id
         });
 
       // Thinkful approach.
@@ -140,14 +143,20 @@ exports.signin = (req, res) => {
   console.log('req in authController.js signin = ', req);
   const userId = req.user._id;
   const visitedLocations = req.user.visitedLocations;
+  // TODO - add reviews.
+  const reviews = req.user.reviews;
 
   // At signin, User has already had their email and password auth'd.
   //
   // NOTE: passport done function assigns "user" to req.user in passport.js localStrategy();
   //
   // Send JWT token, userId and visitedLocations array to Client.
-  res.json({ token: tokenForUser(req.user), userId, visitedLocations });
-
+  res.json({
+    token: tokenForUser(req.user),
+    userId,
+    visitedLocations,
+    reviews
+  });
 
 };
 // ************************************************************************* //

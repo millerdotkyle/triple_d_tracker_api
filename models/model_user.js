@@ -12,6 +12,7 @@ const UserSchema = new Schema({
   email: {type: String, unique: true, lowercase: true},
   password: {type: String},
   visitedLocations: [],
+  reviews: []
 });
 
 UserSchema.methods.serialize = function() {
@@ -32,3 +33,4 @@ UserSchema.statics.hashPassword = function(password) {
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {User};
+// module.exports = User;

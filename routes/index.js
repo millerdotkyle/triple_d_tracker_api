@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const authController = require('../controllers/authController');
 const ctrlLocations = require('../controllers/locationsController');
-// const ctrlDetail = require('../controllers/locationDetailController');
+const ctrlReviews = require('../controllers/reviewsController');
 
 // passport - BEGIN
 const passportService = require('../services/passport');
@@ -19,8 +19,18 @@ router.post('/signin', requireSignin, authController.signin);
 // locations
 // router.get('/locations', ctrlLocations.getAllLocations); // w/o auth
 router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
-router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
+// TODO - don't need this? B/C US State locations are derived from Client side LOCATIONS array.
+// router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
+// TODO - code nearme logic.
 // router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
+
+// reviews
+// TODO - add reviews - don't need a GET reviews b/c
+// TODO 1) they are fetched on signin.
+// TODO 2) when a review is created, POST sends back the review in the "response".
+router.post('/reviews/add', requireAuth, ctrlReviews.addReview);
+router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.addReview);
+router.delete('/reviews/delete/:userId/:locationId', requireAuth, ctrlReviews.deleteReview);
 
 // detail
 // router.get('/location/:locationId', requireAuth, ctrlDetail.getLocationDetail);
