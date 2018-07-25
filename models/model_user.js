@@ -12,7 +12,6 @@ mongoose.Promise = global.Promise;
 const UserSchema = new Schema({
   email: {type: String, unique: true, lowercase: true},
   password: {type: String},
-  // visitedLocations: [],
   reviews: [ReviewSchema]
 });
 
