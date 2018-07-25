@@ -3,6 +3,7 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ReviewSchema = require('./schema_review');
 
 // Replace mongoose's Promise with ES6 Promise.
 mongoose.Promise = global.Promise;
@@ -11,13 +12,21 @@ mongoose.Promise = global.Promise;
 const UserSchema = new Schema({
   email: {type: String, unique: true, lowercase: true},
   password: {type: String},
-  visitedLocations: [],
+  // visitedLocations: [],
+  reviews: [ReviewSchema]
 });
 
 UserSchema.methods.serialize = function() {
   return {
     email: this.email || '',
     msg: `User with email: ${this.email} successfully saved`
+  };
+};
+
+UserSchema.methods.sendReviews = function() {
+  return {
+    reviews: this.reviews || '',
+    msg: `User's review successfully saved`
   };
 };
 
@@ -32,3 +41,4 @@ UserSchema.statics.hashPassword = function(password) {
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {User};
+// module.exports = User;
