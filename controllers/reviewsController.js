@@ -36,13 +36,10 @@ exports.createReview = (req, res) => {
 exports.getReviewToEdit = (req, res) => {
   const userId = req.params.userId;
   const reviewId = req.params.reviewId;
-  console.log('getReviewToEdit ran');
-  console.log('getReviewToEdit userId = ', userId);
-  console.log('getReviewToEdit reviewId = ', reviewId);
+
   User.findById(userId)
       .then(user => {
         const review = user.reviews.id(reviewId);
-        console.log('getReviewToEdit review = ', review);
         res.status(200).json(review)
       })
       .catch(err => {
@@ -52,11 +49,6 @@ exports.getReviewToEdit = (req, res) => {
 };
 
 exports.editReview = (req, res) => {
-  // TODO - Postman test b@b.com userId = 5b578696527db520e24a7bc2
-  // TODO - Postman test b@b.com reviewId = 5b594727ea3a22135b44f598
-  console.log('reviewsController editReview req.body = ', req.body);
-  console.log('reviewsController editReview req.params.userId = ', req.params.userId);
-  console.log('reviewsController editReview req.params.reviewId = ', req.params.reviewId);
 
   const userId = req.params.userId;
   const reviewId = req.params.reviewId;
