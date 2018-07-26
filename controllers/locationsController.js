@@ -21,20 +21,6 @@ module.exports = {
 
   },
 
-  // TODO - dont need this controller b/c US States dervied from Client's LOCATIONS array.
-  // getLocationsByState(req, res, next) {
-  //   let { state } = req.params;
-  //   state = state.toUpperCase();
-  //
-  //   Location
-  //     .find({state: state})
-  //     .then((locations) => { res.json(locations).status(200); })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({ message: 'Internal server error', err: err });
-  //     });
-  // },
-
   getLocationsNearme(req, res, next) {
     console.log('locationController getLocationsNearMe req.body = ', req.body);
   }

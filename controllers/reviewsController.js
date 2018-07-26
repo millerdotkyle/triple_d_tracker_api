@@ -23,7 +23,6 @@ exports.createReview = (req, res) => {
 
   User.findById(userId)
       .then(user => {
-        console.log('user, ', user);
         user.reviews.push(review);
         user.save(err => {
           if (err) {
@@ -34,9 +33,70 @@ exports.createReview = (req, res) => {
       })
 };
 
+exports.getReviewToEdit = (req, res) => {
+  const userId = req.params.userId;
+  const reviewId = req.params.reviewId;
+
+  User.findById(userId)
+      .then(user => {
+        const review = user.reviews.id(reviewId);
+        res.status(200).json(review)
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' })
+      });
+};
+
 exports.editReview = (req, res) => {
-  // TODO - Postman test b@b.com userId = 5b578696527db520e24a7bc2
-  console.log('reviewsController editReview req.body = ', req.body);
+
+  const userId = req.params.userId;
+  const reviewId = req.params.reviewId;
+
+  // prod
+  const toUpdate = {};
+
+  // Ensure req.body contains proper update fields.
+  const updatableFields = ['date', 'review'];
+  updatableFields.forEach(field => {
+
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    } else {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+
+  });
+
+  // make sure userId is in url.
+  if ( !req.params.userId ) {
+    const message = `Missing userId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+  // make sure reviewId is in url.
+  if ( !req.params.reviewId ) {
+    const message = `Missing reviewId in request params`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+  User.findById(userId)
+      .then(user => {
+
+        user.reviews.id(reviewId).set(toUpdate);
+
+        user.save(err => {
+          if (err) {
+            res.send(err)
+          }
+          res.json(user.sendReviews())
+        })
+      })
+
 };
 
 exports.deleteReview = (req, res) => {
