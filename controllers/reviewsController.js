@@ -6,8 +6,7 @@ const {User} = require('../models/model_user');
 mongoose.connect(config.DATABASE_URL);
 
 exports.getReviews = (req, res) => {
-  // Needed for when User refreshes the Browser.
-  // TODO - Postman test b@b.com userId = 5b578696527db520e24a7bc2 - working.
+  // For when Map renders on app launch, or when User refreshes the Browser.
   const userId = req.params.userId;
 
   User.findById(userId)
@@ -36,8 +35,24 @@ exports.createReview = (req, res) => {
 };
 
 exports.editReview = (req, res) => {
+  // TODO - Postman test b@b.com userId = 5b578696527db520e24a7bc2
   console.log('reviewsController editReview req.body = ', req.body);
 };
+
 exports.deleteReview = (req, res) => {
-  console.log('reviewsController deleteReview req.body = ', req.body);
+  const userId = req.params.userId;
+  const reviewId = req.params.reviewId;
+
+  User.findById(userId)
+      .then(user => {
+
+        user.reviews.id(reviewId).remove();
+
+        user.save(err => {
+          if (err) {
+            res.send(err)
+          }
+          res.json(user.sendReviews())
+        })
+      })
 };
