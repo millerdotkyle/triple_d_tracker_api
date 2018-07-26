@@ -26,8 +26,8 @@ router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with au
 
 // reviews
 router.get('/reviews/:userId', requireAuth, ctrlReviews.getReviews);
-router.post('/reviews/add', requireAuth, ctrlReviews.addReview);
-router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.addReview);
+router.post('/reviews/add', requireAuth, ctrlReviews.createReview);
+router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.editReview);
 router.delete('/reviews/delete/:userId/:locationId', requireAuth, ctrlReviews.deleteReview);
 
 // detail

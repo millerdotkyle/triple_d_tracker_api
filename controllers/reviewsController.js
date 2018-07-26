@@ -14,7 +14,7 @@ exports.getReviews = (req, res) => {
       .then(user => { res.status(200).json(user.sendReviews()) });
 };
 
-exports.addReview = (req, res) => {
+exports.createReview = (req, res) => {
   const userId = req.body.userId;
   const review = {
     locationId: req.body.locationId,
@@ -30,7 +30,7 @@ exports.addReview = (req, res) => {
           if (err) {
             res.send(err)
           }
-          res.json(user.sendReviews())
+          res.json(user.sendReviews());
         })
       })
 };
