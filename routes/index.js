@@ -18,7 +18,7 @@ router.post('/signin', requireSignin, authController.signin);
 
 // locations - BEGIN
 router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
-// don't need .get('/locations/:state' b/c this logic handled on Client.
+// Don't need .get('/locations/:state'..) b/c this logic handled on Client via cachedLocations.
 // router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
 // TODO - code nearme logic.
 // router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
@@ -27,7 +27,7 @@ router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with au
 // reviews - BEGIN
 router.get('/reviews/:userId', requireAuth, ctrlReviews.getReviews);
 router.post('/reviews/create', requireAuth, ctrlReviews.createReview);
-router.put('/reviews/put/:userId/:reviewId', requireAuth, ctrlReviews.editReview);
+router.put('/reviews/edit/:userId/:reviewId', requireAuth, ctrlReviews.editReview);
 router.delete('/reviews/delete/:userId/:reviewId', requireAuth, ctrlReviews.deleteReview);
 // reviews - END
 
