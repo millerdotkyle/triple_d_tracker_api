@@ -16,39 +16,19 @@ router.post('/signup', authController.signup);
 router.post('/signin', requireSignin, authController.signin);
 // authentication - END
 
-// locations
-// router.get('/locations', ctrlLocations.getAllLocations); // w/o auth
+// locations - BEGIN
 router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
-// TODO - don't need this? B/C US State locations are derived from Client side LOCATIONS array.
+// don't need .get('/locations/:state' b/c this logic handled on Client.
 // router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
 // TODO - code nearme logic.
 // router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
+// locations - END
 
-// reviews
+// reviews - BEGIN
 router.get('/reviews/:userId', requireAuth, ctrlReviews.getReviews);
-router.post('/reviews/add', requireAuth, ctrlReviews.createReview);
-router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.editReview);
-router.delete('/reviews/delete/:userId/:locationId', requireAuth, ctrlReviews.deleteReview);
-
-// detail
-// router.get('/location/:locationId', requireAuth, ctrlDetail.getLocationDetail);
-
-// // events
-// router.get('/events', requireAuth, ctrlEvents.getTastingEvents);
-// router.post('/events', requireAuth, ctrlEvents.postTastingEventData);
-// router.delete('/events/:eventId', requireAuth, ctrlEvents.deleteEvent);
-// router.get('/events/edit/:eventId', requireAuth, ctrlEvents.getOneTastingEvent); // for Edit Event Form.
-// router.put('/events/edit/:eventId', requireAuth, ctrlEvents.putTastingEventData); // for Edit Event Form.
-//
-// // tastings
-// router.get('/tastings/:eventId', requireAuth, ctrlTastings.getTastingNotes);
-// router.post('/tastings/:eventId', requireAuth, ctrlTastings.postTastingNoteData);
-// router.delete('/tastings/:tastingId', requireAuth, ctrlTastings.deleteTastingNote);
-// router.get('/tastings/edit/:tastingId', requireAuth, ctrlTastings.getOneTastingNote); // for Edit Tasting Note Form.
-// router.put('/tastings/edit/:tastingId', requireAuth, ctrlTastings.putTastingNoteData); // for Edit Tasting Note Form.
-//
-// // search
-// router.post('/search', requireAuth, ctrlSearch.postTastingNotesSearchData);
-
+router.post('/reviews/create', requireAuth, ctrlReviews.createReview);
+router.put('/reviews/put/:userId/:reviewId', requireAuth, ctrlReviews.editReview);
+router.delete('/reviews/delete/:userId/:reviewId', requireAuth, ctrlReviews.deleteReview);
+// reviews - END
 
 module.exports = router;
