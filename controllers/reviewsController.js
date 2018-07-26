@@ -43,7 +43,12 @@ exports.getReviewToEdit = (req, res) => {
       .then(user => {
         const review = user.reviews.id(reviewId);
         console.log('getReviewToEdit review = ', review);
-        res.status(200).json(review) });
+        res.status(200).json(review)
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' })
+      });
 };
 
 exports.editReview = (req, res) => {
