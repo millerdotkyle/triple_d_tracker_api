@@ -23,7 +23,6 @@ exports.createReview = (req, res) => {
 
   User.findById(userId)
       .then(user => {
-        console.log('user, ', user);
         user.reviews.push(review);
         user.save(err => {
           if (err) {
@@ -32,6 +31,19 @@ exports.createReview = (req, res) => {
           res.json(user.sendReviews());
         })
       })
+};
+
+exports.getReviewToEdit = (req, res) => {
+  const userId = req.params.userId;
+  const reviewId = req.params.reviewId;
+  console.log('getReviewToEdit ran');
+  console.log('getReviewToEdit userId = ', userId);
+  console.log('getReviewToEdit reviewId = ', reviewId);
+  User.findById(userId)
+      .then(user => {
+        const review = user.reviews.id(reviewId);
+        console.log('getReviewToEdit review = ', review);
+        res.status(200).json(review) });
 };
 
 exports.editReview = (req, res) => {
