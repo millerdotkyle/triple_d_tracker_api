@@ -5,7 +5,16 @@ const {User} = require('../models/model_user');
 
 mongoose.connect(config.DATABASE_URL);
 
-exports.addReview = (req, res) => {
+exports.getReviews = (req, res) => {
+  // Needed for when User refreshes the Browser.
+  // TODO - Postman test b@b.com userId = 5b578696527db520e24a7bc2 - working.
+  const userId = req.params.userId;
+
+  User.findById(userId)
+      .then(user => { res.status(200).json(user.sendReviews()) });
+};
+
+exports.createReview = (req, res) => {
   const userId = req.body.userId;
   const review = {
     locationId: req.body.locationId,
@@ -21,7 +30,7 @@ exports.addReview = (req, res) => {
           if (err) {
             res.send(err)
           }
-          res.json(user.sendReviews())
+          res.json(user.sendReviews());
         })
       })
 };

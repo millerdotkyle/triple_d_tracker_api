@@ -25,11 +25,9 @@ router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with au
 // router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
 
 // reviews
-// TODO - add reviews - don't need a GET reviews b/c
-// TODO 1) they are fetched on signin.
-// TODO 2) when a review is created, POST sends back the review in the "response".
-router.post('/reviews/add', requireAuth, ctrlReviews.addReview);
-router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.addReview);
+router.get('/reviews/:userId', requireAuth, ctrlReviews.getReviews);
+router.post('/reviews/add', requireAuth, ctrlReviews.createReview);
+router.put('/reviews/put/:userId/:locationId', requireAuth, ctrlReviews.editReview);
 router.delete('/reviews/delete/:userId/:locationId', requireAuth, ctrlReviews.deleteReview);
 
 // detail
