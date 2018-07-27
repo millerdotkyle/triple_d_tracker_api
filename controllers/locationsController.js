@@ -12,13 +12,12 @@ module.exports = {
 
     Location
       .find()
-      .sort({'state': 1})
+      .sort({'state': 1, 'name': 1})
       .then((locations) => { res.json(locations).status(200); })
       .catch(err => {
         console.error(err);
         res.status(500).json({ message: 'Internal server error', err: err });
       });
-
   },
 
   getLocationsNearme(req, res, next) {
