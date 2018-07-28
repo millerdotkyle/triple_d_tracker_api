@@ -33,21 +33,6 @@ exports.createReview = (req, res) => {
       })
 };
 
-exports.getReviewToEdit = (req, res) => {
-  const userId = req.params.userId;
-  const reviewId = req.params.reviewId;
-
-  User.findById(userId)
-      .then(user => {
-        const review = user.reviews.id(reviewId);
-        res.status(200).json(review)
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({ message: 'Internal server error' })
-      });
-};
-
 exports.editReview = (req, res) => {
 
   const userId = req.params.userId;
