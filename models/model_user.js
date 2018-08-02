@@ -24,7 +24,7 @@ UserSchema.methods.serialize = function() {
 
 UserSchema.methods.sendReviews = function() {
   return {
-    reviews: this.reviews || '',
+    reviews: this.reviews || [],
     msg: `User's review successfully added, edited, or deleted`
   };
 };
