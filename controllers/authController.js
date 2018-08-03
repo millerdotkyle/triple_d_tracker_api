@@ -139,7 +139,6 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   const userId = req.user._id;
   const visitedLocations = req.user.visitedLocations;
-  // TODO - add reviews - send reviews to Client on signup.
   const reviews = req.user.reviews;
 
   // At signin, User has already had their email and password auth'd.
