@@ -20,8 +20,7 @@ router.post('/signin', requireSignin, authController.signin);
 router.get('/locations', requireAuth, ctrlLocations.getAllLocations); // with auth
 // Don't need .get('/locations/:state'..) b/c this logic handled on Client via cachedLocations.
 // router.get('/locations/:state', requireAuth, ctrlLocations.getLocationsByState);
-// TODO - code nearme logic.
-// router.get('/locations/nearme', requireAuth, ctrlLocations.getLocationsNearMe);
+router.get('/locations/nearme', requireAuth, ctrlLocations.getNearmeLocations);
 // locations - END
 
 // reviews - BEGIN
