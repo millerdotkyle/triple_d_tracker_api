@@ -40,7 +40,13 @@ exports.getNearmeLocations = (req, res, next) => {
       }
     }
   ])
-    .then((locations) => { res.json(locations).status(200); })
+    .sort({'name': 1})
+    .then((locations) => {
+      for (let i= 0; i < locations.length; i++ ) {
+        console.log('location.name = ', locations[i].name);
+      }
+      res.json(locations).status(200);
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({message: 'Internal server error', err: err});

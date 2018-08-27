@@ -28,8 +28,8 @@ const LocationSchema = new Schema({
   // for mongoose $geoNear(),
   geometry: PointSchema,
   // TODO - future dev - add ratings for a User's Review.
-  // User gets one vote per Location, regardless of the number
-  // of Reviews he may srite for a single Location.
+  // User gets ONE and only ONE vote per Location, regardless of the number
+  // of Reviews he may write for a single Location.
   ratings: []
 });
 
