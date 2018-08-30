@@ -29,6 +29,7 @@ UserSchema.methods.sendReviews = function() {
   };
 };
 
+
 UserSchema.methods.validatePassword = function(candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
