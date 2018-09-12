@@ -37,7 +37,6 @@ ray_code/
 # Application Options
 #########################
 .env
-# config.js
 
 
 # Other - Bower Directories #
