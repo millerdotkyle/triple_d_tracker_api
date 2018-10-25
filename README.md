@@ -17,8 +17,14 @@ Map Markers
 * Non-visited restaurant location markers are Blue.
 * Out of business locations are denoted by Red markers.
 
+This project was also an exploration in implementing the third party react-google-maps library versus working directly with the native Google Map JavaScript API.
 
 ## Technology
+### API
+* Built and Populated API locations database from scratch.
+* User Credentials are persisted on sign-up.
+* User Passwords in database are encrypted via bcrypt.
+* User Reviews and Visited flags persisted when review is saved.
 
 ### Front End
 * React
