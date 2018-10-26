@@ -7,7 +7,7 @@ Now, fans can write private reviews and track the locations they visit.
 
 ## Overview
 
-Triple D (Diners, Drive-ins & Dives) fans are not your typical foodie.  They are foodie fanatics!  It is not uncommon for fans to visit hundreds of different locations.
+Triple D (Diners, Drive-ins & Dives) fans are not your typical foodie.  They are foodie fanatics!  It is not uncommon for fans to visit hundreds of different Triple D locations.
 
 Until now, there was no easy way for Triple D fans to search locations and track the ones they visited.
 
